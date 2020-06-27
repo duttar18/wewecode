@@ -35,7 +35,7 @@ def home_view():
             projects.append({
                 "description" : project.description,
                 "peernum" : project.peernum,
-                "peerlimit" : project.limit,
+                "peerlimit" : project.peerlimit,
                 "link" : "/projects/join/"+str(project.id)
             })
         context = {
