@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Index</title>
+</head>
+
+<body>
+  <h1 style="color: blue">WeWe Code</h1>
+
+  <p>Here are some peer projects you can join!</p>
+  
+  {% for project in projects %}
+    
+    
+    {% if project.peernum == 1 %}
+    <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peer. Capped at {{project.peerlimit}}<br/>
+    {% else %}
+    <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peers. Capped at {{project.peerlimit}}<br/>
+    {% endif %}
+  {% endfor %}
+</body>
+
+</html>
