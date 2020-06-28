@@ -13,15 +13,26 @@
 
   <p>Here are some peer projects you can join!</p>
   
+  <div>
   {% for project in projects %}
     
+    <a href="{{project.link}}"><div>{{project.title}}</div></a>
+    <div>
+      {% if project.peernum == 1 %}
+      Join {{project.peernum}} peer. Capped at {{project.peerlimit}} 
+      {% else %}
+      Join {{project.peernum}} peers. Capped at {{project.peerlimit}}
+      {% endif %}
+    </div>
+
+    <div>
+      {{project.description}}
+    </div>
+    <br/>
     
-    {% if project.peernum == 1 %}
-    <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peer. Capped at {{project.peerlimit}} <br/>
-    {% else %}
-    <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peers. Capped at {{project.peerlimit}}<br/>
-    {% endif %}
+    
   {% endfor %}
+  </div>
 </body>
 
 </html>

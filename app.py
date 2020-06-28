@@ -18,28 +18,27 @@ class Projects(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     link = db.Column(db.String(100), unique=True)
     description = db.Column(db.String(200))
+    title = db.Column(db.String(100))
     peerlimit = db.Column(db.Integer)
     peernum = db.Column(db.Integer)
-    openspot = db.Column(db.Boolean)
 
-    def __init__(self,link,description,peerlimit):
+    def __init__(self,link,description,peerlimit,title):
         self.link=link
         self.description=description
         self.peerlimit=peerlimit+1
         self.peernum=1
-        self.openspot = True
-        if self.peerlimit==self.peernum:
-            self.openspot=False
+        self.title=title
 
 @app.route("/", methods=["GET"]) 
 def home_view(): 
-        projectsq = Projects.query.filter_by(openspot=True).all()
+        projectsq = Projects.query.all()
         projects = []
         for project in projectsq:
             projects.append({
                 "description" : project.description,
                 "peernum" : project.peernum,
                 "peerlimit" : project.peerlimit,
+                "title" : project.title,
                 "link" : "/projects/join/"+str(project.id)
             })
         context = {
@@ -49,21 +48,35 @@ def home_view():
         return render_template("index.html",**context)
 @app.route("/projects/add", methods=["POST"]) 
 def add_project(): 
-        project = Projects(request.json['link'],request.json['description'],int(request.json['peerlimit']))
-        db.session.add(project)
+        project = Projects.query.filter_by(link=request.json['link']).first()
+        if project is None:
+            if request.json['peerlimit']==0:
+                return jsonify(
+                    id = -1
+                )
+            project = Projects(request.json['link'],request.json['description'],int(request.json['peerlimit']),request.json['title'])
+            db.session.add(project)
+            db.session.commit()
+            return jsonify(
+                id = project.id
+            )
+        if request.json['peerlimit']==project.peernum:
+            db.session.delete(project)
+            db.session.commit()
+            return jsonify(
+                id = -1
+            )
+        project.description=request.json['description']
+        project.peerlimit=request.json['peerlimit']
+        project.title=request.json['title']
         db.session.commit()
-        return jsonify(
-            id = project.id
-        )
 @app.route("/projects/join/<path:id>", methods=["GET"]) 
 def delete_project(id): 
         project = Projects.query.filter_by(id=id).first()
-        if not project.openspot:
-            return redirect("/")
         link = project.link
         project.peernum+=1
         if project.peerlimit==project.peernum:
-            project.openspot=False
+            db.session.delete(project)
         db.session.commit()
         return redirect(link)
 
