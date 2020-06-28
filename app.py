@@ -24,7 +24,7 @@ class Projects(db.Model):
         self.peerlimit=peerlimit+1
         self.peernum=1
         self.openspot = True
-        if peerlimit==peernum:
+        if self.peerlimit==self.peernum:
             self.openspot=False
 
 @app.route("/", methods=["GET"]) 
