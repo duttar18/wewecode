@@ -70,6 +70,9 @@ def add_project():
         project.peerlimit=request.json['peerlimit']
         project.title=request.json['title']
         db.session.commit()
+        return jsonify(
+            id = project.id
+        )
 @app.route("/projects/join/<path:id>", methods=["GET"]) 
 def delete_project(id): 
         project = Projects.query.filter_by(id=id).first()
