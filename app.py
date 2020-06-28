@@ -60,14 +60,14 @@ def add_project():
             return jsonify(
                 id = project.id
             )
-        if request.json['peerlimit']<=project.peernum:
+        if int(request.json['peerlimit'])<=project.peernum:
             db.session.delete(project)
             db.session.commit()
             return jsonify(
                 id = -1
             )
         project.description=request.json['description']
-        project.peerlimit=request.json['peerlimit']
+        project.peerlimit=int(request.json['peerlimit'])
         project.title=request.json['title']
         db.session.commit()
         return jsonify(
