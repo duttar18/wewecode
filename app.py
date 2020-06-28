@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify,redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
+import flask_cors
+from flask_cors import CORS, cross_origin
 import os
+CORS(app)
   
 app = Flask(__name__) 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -8,6 +11,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 #Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['CORS_HEADERS'] = 'Content-Type'
 db = SQLAlchemy(app)
 
 class Projects(db.Model):
