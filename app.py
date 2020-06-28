@@ -60,7 +60,7 @@ def add_project():
             return jsonify(
                 id = project.id
             )
-        if request.json['peerlimit']==project.peernum:
+        if request.json['peerlimit']<=project.peernum:
             db.session.delete(project)
             db.session.commit()
             return jsonify(
