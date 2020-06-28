@@ -3,10 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 import flask_cors
 from flask_cors import CORS, cross_origin
 import os
-CORS(app)
   
 app = Flask(__name__) 
 basedir = os.path.abspath(os.path.dirname(__file__))
+CORS(app)
 
 #Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'db.sqlite')
