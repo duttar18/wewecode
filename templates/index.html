@@ -5,33 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Index</title>
+  <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+  <title>WeWeCode</title>
 </head>
 
 <body>
-  <h1 style="color: blue">WeWe Code</h1>
-
-  <p>Here are some peer projects you can join!</p>
   
-  <div>
-  {% for project in projects %}
-    
-    <a href="{{project.link}}"><div>{{project.title}}</div></a>
-    <div>
-      {% if project.peernum == 1 %}
-      Join {{project.peernum}} peer. Capped at {{project.peerlimit}} 
-      {% else %}
-      Join {{project.peernum}} peers. Capped at {{project.peerlimit}}
-      {% endif %}
-    </div>
 
-    <div>
-      {{project.description}}
+  
+  
+  <div class="main">
+    <div class=titleBar>
+      <h1>WeWe Code</h1>
+      <p>Here are some peer projects you can join!</p>
     </div>
-    <br/>
     
-    
-  {% endfor %}
+    {% for project in projects %}
+    <a href="{{project.link}}">
+      <div class="project">
+        <div class="projTitle">{{project.title}}</div>
+        <div class="joinedDesc">
+          {% if project.peernum == 1 %}
+          Joined by {{project.peernum}} peer. Total Peer limit: {{project.peerlimit}} 
+          {% else %}
+          Joined by {{project.peernum}} peers. Total Peer limit: {{project.peerlimit}}
+          {% endif %}
+        </div>
+
+        <div class="desc">
+          {{project.description}}
+        </div>
+        <br/>
+      </div>
+    </a>
+    {% endfor %}
   </div>
 </body>
 

@@ -1,0 +1,52 @@
+
+body{
+    background-color: #FC6471;
+}
+.main {
+    background-color: #FFE8D1;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin : 2em auto 0px auto;
+    padding : 10px 0px 10px 0px;
+}
+.titleBar {
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+}
+.titleBar h1 {
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    color: #0A090C;
+}
+.titleBar p {
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+    color: #813405;
+}
+a{
+    color:inherit;
+    text-decoration: none;
+}
+.project{
+    background-color: #89A6FB;
+    width: 90%;
+    border-radius: 5px;
+    margin: 10px auto 10px auto;
+    padding: 10px 10px 0px 10px;
+}
+.projTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+.joinedDesc{
+    font-size: 15px;
+    margin: 2px 0px 10px 0px;
+}
+.desc{
+    font-size: 15px;
+    background-color: #9AC4F8;
+    border-radius:5px;
+    padding: 10px 10px 10px 10px;
+    margin: 0px auto 0px auto;
+}
