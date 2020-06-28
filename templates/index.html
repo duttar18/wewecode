@@ -17,7 +17,7 @@
     
     
     {% if project.peernum == 1 %}
-    <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peer. Capped at {{project.peerlimit}}<br/>
+    <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peer. Capped at {{project.peerlimit}} <br/>
     {% else %}
     <a href="{{project.link}}"><p>{{project.description}}</p></a> Join {{project.peernum}} peers. Capped at {{project.peerlimit}}<br/>
     {% endif %}
